@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export CUDA_VISIBLE_DEVICES=2,3
+export BNB_CUDA_VERSION=117
 
 name=pubmed-7b
 
@@ -16,10 +17,10 @@ python -m torch.distributed.launch \
 	--gradient_accumulation_steps 8 \
         --train PubMed \
         --valid PubMed \
-        --batch_size 4 \
+        --batch_size 20 \
         --optim adamw \
         --warmup_ratio 0.05 \
-        --num_workers 8 \
+        --num_workers 2 \
         --clip_grad_norm 1.0 \
         --losses 'link,classification' \
         --backbone './7B' \

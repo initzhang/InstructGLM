@@ -1,5 +1,6 @@
 #!/bin/bash
-export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export BNB_CUDA_VERSION=117
+export CUDA_VISIBLE_DEVICES=2,3
 
 name=arxiv-7b
 
@@ -18,7 +19,7 @@ python -m torch.distributed.launch \
         --batch_size 4 \
         --optim adamw \
         --warmup_ratio 0.05 \
-        --num_workers 8 \
+        --num_workers 2 \
         --clip_grad_norm 1.0 \
         --losses 'link,classification' \
         --backbone './7B' \
